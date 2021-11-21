@@ -1,5 +1,6 @@
 package app.doggy.animationresourcessample
 
+import android.graphics.drawable.Animatable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import app.doggy.animationresourcessample.databinding.ActivityMainBinding
