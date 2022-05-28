@@ -1,8 +1,9 @@
 package app.doggy.animationresourcessample
 
+import android.animation.ValueAnimator
 import android.graphics.drawable.Animatable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import app.doggy.animationresourcessample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply { setContentView(this.root) }
 
+        /* フレームアニメーション */
         // dice_image_viewの背景にdice_animationを設定
         binding.diceImageView.setBackgroundResource(R.drawable.dice_animation)
 
@@ -31,6 +33,29 @@ class MainActivity : AppCompatActivity() {
                     diceAnimation.start()
                 }
             }
+        }
+
+        /* ValueAnimator */
+        // TextViewに表示する文字列のリスト
+        val animationTextList: List<String> = listOf(
+            "あ", "い", "う", "え", "お",
+        )
+
+        // はじめの文字列を表示
+        binding.countUpText.text = animationTextList[0]
+
+        // valueAnimatorを生成
+        val valueAnimator = ValueAnimator.ofInt(0, animationTextList.size - 1).apply {
+            duration = resources.getInteger(R.integer.number_duration).toLong()
+            addUpdateListener {
+                binding.countUpText.text =
+                    animationTextList[it.animatedValue.toString().toInt()]
+            }
+        }
+
+        // count_up_textをクリックした時の処理
+        binding.countUpText.setOnClickListener {
+            valueAnimator.start()
         }
     }
 }
