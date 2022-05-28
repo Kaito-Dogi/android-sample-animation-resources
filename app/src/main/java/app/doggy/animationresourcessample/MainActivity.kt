@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        /* ValueAnimation */
+        /* ValueAnimator */
         // TextViewに表示する文字列のリスト
         val animationTextList: List<String> = listOf(
             "あ", "い", "う", "え", "お",
